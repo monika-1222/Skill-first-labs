@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import url("reset.css");
+
+/* ---- Design tokens { this brace is inside a comment and must be ignored } ---- */
+:root {
+  --brand: #1e66f5;
+  --brand-dark: #0b3d99;
+  --text: #1a1a1a;
+  --muted: #8a8a8a;
+  --surface: #ffffff;
+  --accent: hsl(340, 82%, 52%);
+  --space: 8px;
+  --radius: 6px;
+  --font-body: "Inter", system-ui, sans-serif;
+  --alias: var(--brand);
+  --loop-a: var(--loop-b);
+  --loop-b: var(--loop-a);
+}
+
+@font-face {
+  font-family: "Inter";
+  /* semicolons and braces inside url(...) must not split the declaration */
+  src: url("data:font/woff2;base64,AAAA;BBBB}CCCC") format("woff2");
+  font-weight: 400 700;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--surface);
+  margin: 0;
+}
+
+h1 { font-size: 2.5rem; font-weight: 700; color: var(--brand-dark); margin: 0 0 24px; }
+h2 { font-size: 1.75rem; font-weight: 600; color: var(--brand-dark); margin: 0 0 16px; }
+a  { color: var(--brand); text-decoration: underline; }
+
+.btn {
+  background-color: var(--brand);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+}
+.btn:hover { background-color: var(--brand-dark); }
+.btn { padding: 10px 18px; }            /* overrides the padding above */
+
+.muted { color: var(--muted); background-color: #fff; }   /* low contrast on purpose */
+
+.card > .title::before { content: "a;b{c}"; color: var(--accent); }
+.card { padding: var(--space); gap: 12px; background: #f5f5f5; }
+
+#hero .cta.primary:not(.disabled) { color: red !important; margin: 15px; }
+
+.legacy { color: #ff0000; color: rgb(255 0 0 / 0.5); }   /* fallback pattern */
+.badge { color: var(--missing, #333333); background-color: #ffe08a; }
+.loop  { color: var(--loop-a); }
+.ghost { color: var(--does-not-exist); }
+
+@media (min-width: 768px) {
+  body { font-size: 18px; }
+  .card { padding: 24px; }
+}
+
+@media (max-width: 480px) and (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { --text: #eaeaea; --surface: #121212; }
+}
+
+@keyframes pulse { from { opacity: 0; } to { opacity: 1; } }
