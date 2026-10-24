@@ -1,0 +1,5 @@
+# Milestone 1 and the offline agent use only the Python standard library (3.9+).
+# Only needed for the optional live-LLM mode (agent.py --live / demo.py --live):
+anthropic>=0.40
+# Only needed to regenerate docs/Report.pdf:
+reportlab>=4.0
